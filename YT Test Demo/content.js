@@ -29,26 +29,24 @@ function afterNavigate() {
 		console.groupEnd();
 
 		// Alert every 5 videos watched
-		//if (videoCount % 5 == 0) {
-		if (videoCount >= 0) {
+		if (videoCount % 5 == 0) {
+		//if (videoCount >= 0) {
 			//alert("You have watched " + videoCount + " videos!");
 
-			// Create background black layer
+			/** HTML DOM Content */
+
+			// Create background black layer (partially opaque)
 			wrapperDiv = document.createElement("div");
-			wrapperDiv.setAttribute("style","position: absolute; left: 0px; top: 0px; background-color: rgb(0, 0, 0); opacity: 0.95; z-index: 2000; height: 10000px; width: 10000px;");
+			wrapperDiv.setAttribute("style","position: fixed; width: 800px; height: 1500px; left: 0px; top: 0px; background-color: rgb(0, 0, 0); opacity: 0.95; z-index: 9999; width: 100%;");
 
-			// CSS test
-			//wrapperDiv.className = "wrapperDiv";	// Possibly try w/ background script?
 
-			// Create iFrame (not needed)
-			//iframeElement = document.createElement("iframe");
-			//iframeElement.setAttribute("style","width: 100%; height: 100%;");
+			// Container div for text content (currently set so you can't see it)
+			modalDialogParentDiv = document.createElement("div");	// Create the parent div
+			modalDialogParentDiv.setAttribute("style","position: fixed; opacity: 1; z-index: 10000; overflow: auto; top: 200px; ");
+			modalDialogParentDiv.style.position = "fixed";		// Div follows scrolling
+			modalDialogParentDiv.style.alignSelf = "center";
 
-			//wrapperDiv.appendChild(iframeElement);
 
-			modalDialogParentDiv = document.createElement("div");
-			modalDialogParentDiv.setAttribute("style","position: absolute; width: 800px; border: 1px solid rgb(51, 102, 153); padding: 10px; background-color: rgb(255, 255, 255); z-index: 2001; overflow: auto; text-align: left; top: 80px; left: 100px");
-			modalDialogParentDiv.style.position = "fixed";
 
 
 			modalDialogSiblingDiv = document.createElement("div");
@@ -57,12 +55,14 @@ function afterNavigate() {
 
 			modalDialogTextDiv = document.createElement("div"); 
 			modalDialogTextDiv.setAttribute("style" , "text-align:center");
+			modalDialogTextDiv.style.alignSelf = "center";
 			//modalDialogTextDiv.style.position = "fixed";
 
 
 			modalDialogTextSpan = document.createElement("span"); 
 			modalDialogText = document.createElement("strong"); 
 			modalDialogText.innerHTML = "You've been watching too many videos! Your laziness ain't helping nobody. Get your shit together.";
+			modalDialogText.style.alignSelf = "center";
 
 			modalDialogText.style.fontSize = "80px";
 			modalDialogText.style.fontStyle = "italic";
