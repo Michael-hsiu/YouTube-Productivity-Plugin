@@ -5,7 +5,8 @@
   "description": "This extension will create an alert on any YouTube page.",
   "version": "1.0",
   "permissions" : [
-    "activeTab"
+    "activeTab",
+    "tabs"
   ],
 
   "browser_action": {
@@ -16,7 +17,7 @@
 
 
   "background": {
-    "scripts": ["myScript.js"],
+    "scripts": ["background.js"],
     "persistent": false
   },
 
@@ -27,7 +28,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["myScript.js"]
+      "js": ["content.js"]
       //"run_at": "document_start"
     }
   ],
