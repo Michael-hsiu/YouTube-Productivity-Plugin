@@ -1,3 +1,5 @@
+
+
 /** I want this extension to monitor how many videos one has watched in a row,
  *  and how long someone has watched videos that day / week/ month / all time.
  *  
@@ -8,7 +10,7 @@
 //alert('New page!');
 //document.write(100);
 var videoCount = 0;
-
+var lastMsgIndex;
 
 
 function afterNavigate() {
@@ -29,8 +31,8 @@ function afterNavigate() {
 		console.groupEnd();
 
 		// Alert every 5 videos watched
-		if (videoCount % 5 == 0) {
-		//if (videoCount >= 0) {
+		//if (videoCount % 5 == 0) {
+		if (videoCount >= 0) {
 			//alert("You have watched " + videoCount + " videos!");
 
 			/** HTML DOM Content */
@@ -47,8 +49,6 @@ function afterNavigate() {
 			modalDialogParentDiv.style.alignSelf = "center";
 
 
-
-
 			modalDialogSiblingDiv = document.createElement("div");
 			//modalDialogSiblingDiv.style.position = "fixed";
 
@@ -60,8 +60,32 @@ function afterNavigate() {
 
 
 			modalDialogTextSpan = document.createElement("span"); 
-			modalDialogText = document.createElement("strong"); 
-			modalDialogText.innerHTML = "You've been watching too many videos! Your laziness ain't helping nobody. Get your shit together.";
+			modalDialogText = document.createElement("strong");
+
+			// Potential messages
+			stringArrays = [];
+			stringArrays.push("You've been watching too many videos! Your laziness ain't helping nobody. Get your shit together.");
+			stringArrays.push("Fuck your bullshit. Lazy shitter. Get off your ass.");
+			stringArrays.push("You're lazy. Do you want to be?");
+			stringArrays.push("Ain't nobody gonna hold your hand in this tough world. Start busting ass and taking names before you die.");
+			stringArrays.push("Life ain't all sunshines and YouTube. Take the pledge to better yourself.");
+			stringArrays.push("Thought is nothing. Execution is everything. Close this fucking tab.");
+			stringArrays.push("Get moving. Whether that's in the mind or body, just get moving.");
+
+			index = getRandomInt(0, stringArrays.length);			// Set preliminary message index
+
+			console.log("LAST INDEX: " + lastMsgIndex);
+			console.log("INDEX: " + index);
+
+			while (index == lastMsgIndex) {
+				index = getRandomInt(0, stringArrays.length);		// Reroll if you get the same message index as last time
+			}
+
+			console.log("NEW INDEX: " + index);
+
+			lastMsgIndex = index;									// Prevent same message appearing consecutively
+			modalDialogText.innerHTML = stringArrays[index];		// Assign random message (more of just in case they find a way to bypass extension and don't close tab)
+
 			modalDialogText.style.alignSelf = "center";
 
 			modalDialogText.style.fontSize = "80px";
@@ -73,18 +97,23 @@ function afterNavigate() {
 
 			imageElement = document.createElement("img"); 
 			imageElement.src = chrome.extension.getURL("stop.jpg");
-			//imageElement.style.position = "fixed";
+			imageElement.style.position = "fixed";
 
 			breakElement = document.createElement("br"); 
-		    btn = document.createElement("BUTTON");
-    		t = document.createTextNode("Click me");
-    		btn.appendChild(t);
+		    //btn = document.createElement("BUTTON");
+    		//t = document.createTextNode("Click me");
+    		//btn.appendChild(t);
+    		//btn.setAttribute("top: 500px");
 
 
 			modalDialogTextSpan.appendChild(modalDialogText);
+			//modalDialogTextSpan.appendChild(btn);
+
 			modalDialogTextDiv.appendChild(modalDialogTextSpan);
-			//modalDialogTextDiv.appendChild(breakElement);
-			//modalDialogTextDiv.appendChild(breakElement);
+			//modalDialogTextDiv.appendChild(imageElement);
+
+			modalDialogTextDiv.appendChild(breakElement);
+			modalDialogTextDiv.appendChild(breakElement);
 
 			//modalDialogTextDiv.appendChild(imageElement);
 
@@ -95,7 +124,7 @@ function afterNavigate() {
 			document.body.appendChild(wrapperDiv);		// Background layer
 			document.body.appendChild(modalDialogParentDiv);
 
-			document.body.appendChild(btn);
+			//document.body.appendChild(btn);
 
 			/*// Get current tabID
 			var activeTabId;
@@ -113,8 +142,8 @@ function afterNavigate() {
 			window.onclick = function(event) {
 	    		if (event.target == modalDialogText) {
 	    			//modalDialogText.style.color = "magenta";
-	    			wrapperDiv.style.display = "none";
-	        		modalDialogParentDiv.style.display = "none";
+	    			//wrapperDiv.style.display = "none";
+	        		//modalDialogParentDiv.style.display = "none";
 	        		chrome.runtime.sendMessage("closeTab");		// Send message to background script
 	        		
 				}
@@ -123,6 +152,13 @@ function afterNavigate() {
     }
 }
 
+
+// RNG for string message array
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 // YouTube detection logic
 (document.body || document.documentElement).addEventListener('transitionend',
