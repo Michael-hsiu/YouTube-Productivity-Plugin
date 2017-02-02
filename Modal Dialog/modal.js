@@ -40,9 +40,11 @@ imageElement.src = chrome.extension.getURL("spinner_progress.gif");
 button = document.createElement("button");
 t = document.createTextNode("Click Me!");
 button.appendChild(t);
-button.className = "modalButton";
-//button.style.color = "red";
-
+button.className = "modalButton";		// For attempted CSS injectiion [NOT WORKING @runtime, works onBrowserAction] 
+button.style.color = "red";
+button.style.fontSize = "x-large";
+button.style.fontFamily = "Impact,Charcoal,sans-serif";
+button.style.backgroundColor = "#4CAF50";
 
 // Add elements to span
 modalDialogTextSpan.appendChild(modalDialogText);	// Add bold text to the span
@@ -72,6 +74,24 @@ document.body.appendChild(wrapperDiv);
 
 // Add parent modal wrapper to page
 document.body.appendChild(modalDialogParentDiv);
+
+
+console.log("END OF SCRIPT");
+
+
+
+/** HELPER FXNS (user interaction) -------------------------------------------------------------------------------------------- */
+
+var loadfunction = window.onload;
+window.onload = function() {
+	// Apply CSS to button at runtime
+	if (loadfunction) {
+		chrome.runtime.sendMessage("STYLES");
+		console.log("It's loaded!");
+	}
+}
+
+
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {

@@ -6,10 +6,19 @@
 
     "permissions" : [
         "activeTab",
-        "tabs"
+        "tabs",
+        "storage"
     ],
+
+    "options_page": "options.html",
+
+    "browser_action": {
+    	"default_title": "Modal Window!"
+  	},
+
     "content_scripts": [
         {
+        	"run_at": "document_end",
             "matches": [
                 "<all_urls>"
             ],
