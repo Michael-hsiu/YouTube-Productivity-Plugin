@@ -38,8 +38,25 @@ imageElement.src = chrome.extension.getURL("spinner_progress.gif");
 
 // Try creating a button
 button = document.createElement("button");
-t = document.createTextNode("Click Me!");
-button.appendChild(t);
+//t = document.createTextNode("Click Me!");
+
+// TEST: Getting text stored in chrome.storage [WORKS]
+function restore_options() {
+  // Use default value color = 'red' and likesColor = true.
+  chrome.storage.sync.get({
+    favoriteColor: 'red',
+    likesColor: true
+  }, function(items) {
+  	t = document.createTextNode(items.favoriteColor);
+  	button.append(t);
+  });
+}
+
+// Change button text to saved text
+restore_options();
+
+
+//button.appendChild(t);
 button.className = "modalButton";		// For attempted CSS injectiion [NOT WORKING @runtime, works onBrowserAction] 
 button.style.color = "red";
 button.style.fontSize = "x-large";
@@ -81,6 +98,8 @@ console.log("END OF SCRIPT");
 
 
 /** HELPER FXNS (user interaction) -------------------------------------------------------------------------------------------- */
+
+
 
 var loadfunction = window.onload;
 window.onload = function() {

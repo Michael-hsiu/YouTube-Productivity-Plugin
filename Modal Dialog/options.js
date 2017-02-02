@@ -1,4 +1,4 @@
-// Saves options to chrome.storage
+// Saves options to chrome.storage.sync.
 function save_options() {
   var color = document.getElementById('color').value;
   var likesColor = document.getElementById('like').checked;
