@@ -1,5 +1,3 @@
-
-
 /** I want this extension to monitor how many videos one has watched in a row,
  *  and how long someone has watched videos that day / week/ month / all time.
  *  
@@ -11,6 +9,34 @@
 //document.write(100);
 var videoCount = 0;
 var lastMsgIndex;
+var videoRatio;		// How many videos watched before notification
+
+// Gets the difficulty
+chrome.storage.sync.get('difficulty', function(data) {
+	// Returns easy, medium, or hard
+	diff = data.difficulty;
+	if (diff === 'easy') {
+		//alert('EASY!!');
+		videoRatio = 10;
+	} else if (diff === 'medium') {
+		//alert('MEDIUM!!');
+		videoRatio = 5;
+	} else {
+		//alert('HARD!!');
+		videoRatio = 3;
+	}
+});
+
+chrome.storage.sync.get({
+    'difficulty': 'medium',	// This string is value="" 
+    'closeAll': false,
+    'profaneMsgStatus': false
+
+  }, function(items) {
+    document.getElementById('difficulty').value = items.difficulty;
+    document.getElementById('closeTabCheckbox').checked = items.closeAll;
+    document.getElementById('profanityCheckbox').checked = items.profaneMsgStatus;
+  });
 
 
 function afterNavigate() {
@@ -31,7 +57,7 @@ function afterNavigate() {
 		console.groupEnd();
 
 		// Alert every 5 videos watched
-		//if (videoCount % 5 == 0) {
+		//if (videoCount % videoRatio == 0) {
 		if (videoCount >= 0) {
 			//alert("You have watched " + videoCount + " videos!");
 
