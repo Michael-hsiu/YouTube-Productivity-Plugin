@@ -152,28 +152,7 @@ function afterNavigate() {
 
 			//document.body.appendChild(btn);
 
-			/*// Get current tabID
-			var activeTabId;
-			//doInCurrentTab( function(tab){ activeTabId = tab.id } );
-
-			chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
-  				activeTabId = tabs[0];
-			});
-
-			chrome.tabs.insertCSS(activeTabId, {
-				file: "dom.css"
-			}); */
-
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-	    		if (event.target == modalDialogText) {
-	    			//modalDialogText.style.color = "magenta";
-	    			//wrapperDiv.style.display = "none";
-	        		//modalDialogParentDiv.style.display = "none";
-	        		chrome.runtime.sendMessage("closeTab");		// Send message to background script
-	        		
-				}
-			}
+			
 		}
     }
 }
@@ -196,3 +175,15 @@ function getRandomInt(min, max) {
 
 // After page load
 afterNavigate();
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	if (event.target == modalDialogText) {
+		console.log("CLICKED");
+		//modalDialogText.style.color = "magenta";
+		//wrapperDiv.style.display = "none";
+		//modalDialogParentDiv.style.display = "none";
+		chrome.runtime.sendMessage("closeTab");		// Send message to background script
+	}
+}
