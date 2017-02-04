@@ -118,7 +118,7 @@ function afterNavigate() {
 
 
                 modalDialogTextDiv = document.createElement("div");
-                modalDialogTextDiv.setAttribute("style", "text-align: center");
+                modalDialogTextDiv.setAttribute("style", "text-align: center; padding: 35px");
                 modalDialogTextDiv.style.alignSelf = "center";
                 //modalDialogTextDiv.style.position = "fixed";
 
@@ -157,12 +157,12 @@ function afterNavigate() {
                 modalDialogText.style.fontWeight = "900";
                 modalDialogText.style.position = "fixed";
                 modalDialogText.style.color = "#ff0000";
-                modalDialogText.style.top = "200px";        // NEW
+                modalDialogText.style.top = "180px";        // Distance from top
 
 
-                imageElement = document.createElement("img");
-                imageElement.src = chrome.extension.getURL("stop.jpg");
-                imageElement.style.position = "fixed";
+                //imageElement = document.createElement("img");
+                //imageElement.src = chrome.extension.getURL("stop.jpg");
+                //imageElement.style.position = "fixed";
 
                 breakElement = document.createElement("br");
                 //btn = document.createElement("BUTTON");
@@ -203,24 +203,44 @@ function afterNavigate() {
 
                 // Try creating a button
                 button = document.createElement("button");
-                button.setAttribute("style", "position: fixed; bottom: 10%; z-index: 20000; text-align: center;" +
-                    "width: 200px; height: 100px; background-color: powderblue; margin: auto; border: 3px solid green;" +
-                    "left: 40%");
-                t = document.createTextNode("Click me");
+                t = document.createTextNode("True that.");
                 button.appendChild(t);
 
+                button.setAttribute("style", "position: fixed; bottom: 15%; z-index: 20000; text-align: center;" +
+                    "width: 300px; height: 150px; color: white; background-color: #ff0000; margin: auto; border: 3px solid white;" +
+                    "left: 38%; font-size: 45px; box-shadow: 5px 5px grey;");
 
-                //buttonDiv.appendChild(button);
+                button.style.fontWeight = "lighter";
+                button.style.fontStyle = "italic";
+                
+                buttonDiv.appendChild(button);
 
 
                 document.body.appendChild(wrapperDiv);		// Background layer
                 document.body.appendChild(modalDialogParentDiv);
-                //document.body.appendChild(buttonDiv);
+                document.body.appendChild(buttonDiv);
+
+                button.onmouseover = function() {mouseOver()};
+                button.onmouseout = function() {mouseOut()};
+
+                function mouseOver() {
+                    button.style.backgroundColor = "#E80C7A";
+                    button.style.fontWeight = "bolder";
+                    button.style.fontStyle = "italic";
+                }
+
+                function mouseOut() {
+                    button.style.backgroundColor = "#ff0000";
+                    button.style.fontWeight = "lighter";
+                    button.style.fontStyle = "italic";
+                }
 
             }
         }
     });
 }
+
+
 
 
 // RNG for string message array
@@ -244,7 +264,7 @@ afterNavigate();
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == modalDialogText) {
+    if (event.target == button) {
         console.log("CLICKED");
         //modalDialogText.style.color = "magenta";
         //wrapperDiv.style.display = "none";
