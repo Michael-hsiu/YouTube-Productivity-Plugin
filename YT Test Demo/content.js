@@ -11,6 +11,27 @@ var videoCount = 0;
 var lastMsgIndex;
 var videoRatio;		// How many videos watched before notification
 
+// Potential messages
+profaneNotifications = [];
+profaneNotifications.push("You've been watching too many videos! Your laziness ain't helping nobody. Get your shit together.");
+profaneNotifications.push("Fuck your bullshit. Lazy shitter. Get off your ass.");
+profaneNotifications.push("You're lazy. Do you want to be?");
+profaneNotifications.push("Ain't nobody gonna hold your hand in this tough world. Start busting ass and taking names before you die.");
+profaneNotifications.push("Life ain't all sunshines and YouTube. Take the pledge to better yourself.");
+profaneNotifications.push("Thought is nothing. Execution is everything. Close this fucking tab.");
+profaneNotifications.push("Get moving. Whether that's in the mind or body, just get moving.");
+
+cleanNotifications = [];
+cleanNotifications.push("You've been watching too many videos! Your laziness ain't helping nobody. Get it together.");
+cleanNotifications.push("This ain't the way to go. Get off your bum.");
+cleanNotifications.push("You're lazy. Do you want to be?");
+cleanNotifications.push("Ain't nobody gonna hold your hand in this tough world. Start working hard now before it's too late.");
+cleanNotifications.push("Life ain't all sunshines and YouTube. Take the pledge to better yourself.");
+cleanNotifications.push("Thought is nothing. Execution is everything. Close the tab.");
+cleanNotifications.push("Get moving. Whether that's in the mind or body, just get moving.");
+
+
+
 // Gets the difficulty
 chrome.storage.sync.get('difficulty', function (data) {
     // Returns easy, medium, or hard
@@ -73,19 +94,21 @@ function afterNavigate() {
             // Alert every 5 videos watched
             //if (videoCount % videoRatio == 0) {
             if (videoCount >= 0) {
-                alert("VIDEO RATIO: " + videoRatio);
+                //alert("VIDEO RATIO: " + videoRatio);
                 //alert("You have watched " + videoCount + " videos!");
 
                 /** HTML DOM Content */
 
                 // Create background black layer (partially opaque)
                 wrapperDiv = document.createElement("div");
-                wrapperDiv.setAttribute("style", "position: fixed; width: 800px; height: 1500px; left: 0px; top: 0px; background-color: rgb(0, 0, 0); opacity: 0.95; z-index: 9999; width: 100%;");
+                wrapperDiv.setAttribute("style", "position: fixed; width: 800px; height: 1500px; left: 0px; " +
+                    "top: 0px; background-color: rgb(0, 0, 0); opacity: 0.95; z-index: 9999; width: 100%;");
 
 
                 // Container div for text content (currently set so you can't see it)
                 modalDialogParentDiv = document.createElement("div");	// Create the parent div
-                modalDialogParentDiv.setAttribute("style", "position: fixed; opacity: 1; z-index: 10000; overflow: auto; top: 200px; ");
+                modalDialogParentDiv.setAttribute("style", "position: fixed; opacity: 1; z-index: 10000; " +
+                    "overflow: auto; top: 200px; ");
                 modalDialogParentDiv.style.position = "fixed";		// Div follows scrolling
                 modalDialogParentDiv.style.alignSelf = "center";
 
@@ -95,7 +118,7 @@ function afterNavigate() {
 
 
                 modalDialogTextDiv = document.createElement("div");
-                modalDialogTextDiv.setAttribute("style", "text-align:center");
+                modalDialogTextDiv.setAttribute("style", "text-align: center");
                 modalDialogTextDiv.style.alignSelf = "center";
                 //modalDialogTextDiv.style.position = "fixed";
 
@@ -103,37 +126,38 @@ function afterNavigate() {
                 modalDialogTextSpan = document.createElement("span");
                 modalDialogText = document.createElement("strong");
 
-                // Potential messages
-                stringArrays = [];
-                stringArrays.push("You've been watching too many videos! Your laziness ain't helping nobody. Get your shit together.");
-                stringArrays.push("Fuck your bullshit. Lazy shitter. Get off your ass.");
-                stringArrays.push("You're lazy. Do you want to be?");
-                stringArrays.push("Ain't nobody gonna hold your hand in this tough world. Start busting ass and taking names before you die.");
-                stringArrays.push("Life ain't all sunshines and YouTube. Take the pledge to better yourself.");
-                stringArrays.push("Thought is nothing. Execution is everything. Close this fucking tab.");
-                stringArrays.push("Get moving. Whether that's in the mind or body, just get moving.");
-
-                index = getRandomInt(0, stringArrays.length);			// Set preliminary message index
+                index = getRandomInt(0, profaneNotifications.length);			// Set preliminary message index
 
                 console.log("LAST INDEX: " + lastMsgIndex);
                 console.log("INDEX: " + index);
 
                 while (index == lastMsgIndex) {
-                    index = getRandomInt(0, stringArrays.length);		// Reroll if you get the same message index as last time
+                    index = getRandomInt(0, profaneNotifications.length);		// Reroll if you get the same message index as last time
                 }
 
                 console.log("NEW INDEX: " + index);
 
                 lastMsgIndex = index;									// Prevent same message appearing consecutively
-                modalDialogText.innerHTML = stringArrays[index];		// Assign random message (more of just in case they find a way to bypass extension and don't close tab)
+
+                // Assign random message (more of just in case they find a way to bypass extension and don't close tab)
+                chrome.storage.sync.get('profaneMsgStatus', function(data) {
+                    profaneMsgStatus = data.profaneMsgStatus;
+
+                    if (profaneMsgStatus == true) {
+                        modalDialogText.innerHTML = profaneNotifications[index];
+                    } else {
+                        modalDialogText.innerHTML = cleanNotifications[index];
+                    }
+                });
+
 
                 modalDialogText.style.alignSelf = "center";
-
                 modalDialogText.style.fontSize = "80px";
                 modalDialogText.style.fontStyle = "italic";
                 modalDialogText.style.fontWeight = "900";
                 modalDialogText.style.position = "fixed";
                 modalDialogText.style.color = "#ff0000";
+                modalDialogText.style.top = "200px";        // NEW
 
 
                 imageElement = document.createElement("img");
@@ -150,11 +174,21 @@ function afterNavigate() {
                 modalDialogTextSpan.appendChild(modalDialogText);
                 //modalDialogTextSpan.appendChild(btn);
 
+                // Try creating a button
+                /*button = document.createElement("button");
+                button.className = "modalButton";
+                button.style.color = "red";
+                button.style.fontSize = "x-large";
+                button.style.fontFamily = "Impact,Charcoal,sans-serif";
+                button.style.backgroundColor = "#4CAF50";*/
+
                 modalDialogTextDiv.appendChild(modalDialogTextSpan);
+
                 //modalDialogTextDiv.appendChild(imageElement);
 
                 modalDialogTextDiv.appendChild(breakElement);
                 modalDialogTextDiv.appendChild(breakElement);
+               //modalDialogTextDiv.appendChild(button);			// Add the button
 
                 //modalDialogTextDiv.appendChild(imageElement);
 
@@ -162,10 +196,27 @@ function afterNavigate() {
                 //modalDialogParentDiv.appendChild(btn)
                 modalDialogParentDiv.appendChild(modalDialogSiblingDiv);
 
+
+                // Button div (same lvl as modalParentDiv)
+                buttonDiv = document.createElement("div");
+                buttonDiv.setAttribute("style", "margins: auto; text-align: center; z-index: 10000");
+
+                // Try creating a button
+                button = document.createElement("button");
+                button.setAttribute("style", "position: fixed; bottom: 10%; z-index: 20000; text-align: center;" +
+                    "width: 200px; height: 100px; background-color: powderblue; margin: auto; border: 3px solid green;" +
+                    "left: 40%");
+                t = document.createTextNode("Click me");
+                button.appendChild(t);
+
+
+                //buttonDiv.appendChild(button);
+
+
                 document.body.appendChild(wrapperDiv);		// Background layer
                 document.body.appendChild(modalDialogParentDiv);
+                //document.body.appendChild(buttonDiv);
 
-                //document.body.appendChild(btn);
             }
         }
     });

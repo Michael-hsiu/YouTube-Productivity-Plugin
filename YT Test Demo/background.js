@@ -8,13 +8,13 @@ chrome.runtime.onMessage.addListener(function(response, sender, sendResponse) {
 
 	// Should we close all tabs?
 	chrome.storage.sync.get('closeAll', function(data) {
-		tabData = data.closeAll;
-		closeAllGlobal = tabData;
+			tabData = data.closeAll;
+			closeAllGlobal = tabData;
 
-		alert(closeAllGlobal);
+		alert("Close all tabs?: " + closeAllGlobal);
 		// Either close all YouTube tabs...
 		if (closeAllGlobal == true) {
-			alert("INSIDE IF");
+			//alert("INSIDE IF");
 
 			chrome.tabs.query({}, function(tabs) {		
 
@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener(function(response, sender, sendResponse) {
 		// ... or only close the current YouTube tab
 		} else {
 			// Get the current active tab
-			alert("INSIDE ELSE");
+			//alert("INSIDE ELSE");
 			chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {		
 				var current = tabs[0];
 				// Close current active tab
