@@ -10,12 +10,14 @@
         "storage"
     ],
 
-    "options_page": "options.html",
+
 
     "browser_action": {
     	"default_title": "Modal Window!"
   	},
 
+    "options_page": "options.html",
+    
     "options_ui": {
         // Required.
         "page": "options.html",

@@ -77,7 +77,7 @@ modalDialogTextDiv.appendChild(breakElement);			// Add a line break after text
 modalDialogTextDiv.appendChild(breakElement);			// Add another line break
 
 modalDialogTextDiv.appendChild(imageElement);			// Add the image
-modalDialogTextDiv.appendChild(button);			// Add the image
+modalDialogTextDiv.appendChild(button);			// Add the button
 
 
 // Add elements to sibling div
