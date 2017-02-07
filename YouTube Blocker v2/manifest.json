@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+
+  "name": "YouTube Blocker v2",
+  "description": "This extension will create an alert on any YouTube page.",
+  "version": "1.0",
+  "permissions" : [
+	"activeTab",
+	"tabs",
+	"storage"
+  ],
+
+  "options_page": "options.html",
+  
+  "options_ui": {
+	  "page": "options.html",
+	  "chrome_style": true
+  },
+
+  "browser_action": {
+   "default_icon": "icon48.png",
+   "default_popup": "popup.html"
+  },
+
+  "icons": { "16": "icon16.png",
+		   "48": "icon48.png",
+		   "64": "icon48.png",
+		  "128": "icon128.png" },
+
+  "background": {
+  	"scripts": ["background.js"],
+  	"persistent": false
+  },
+
+  "content_scripts": [
+  	{
+  	  "matches": ["*://*/*"],
+  	  "js": ["contentV2.js"]
+  	}
+  ]
+}
