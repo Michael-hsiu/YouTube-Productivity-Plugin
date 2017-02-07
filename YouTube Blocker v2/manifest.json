@@ -35,7 +35,11 @@
   "content_scripts": [
   	{
   	  "matches": ["*://*/*"],
-  	  "js": ["contentV2.js"]
+  	  "js": ["contentV3.js"]
   	}
+  ],
+
+  "web_accessible_resources": [
+    "contentstyle.css"
   ]
 }
