@@ -16,7 +16,7 @@ profaneNotifications = [];
 profaneNotifications.push("You've been watching too many videos! Your laziness ain't helping nobody. Get your shit together.");
 profaneNotifications.push("Fuck your bullshit. Lazy shitter. Get off your ass.");
 profaneNotifications.push("You're lazy. Do you want to be?");
-profaneNotifications.push("Ain't nobody gonna hold your hand in this tough world. Start busting ass and taking names before you die.");
+profaneNotifications.push("Ain't nobody gonna hold your hand in this tough world. Start busting ass and taking names now.");
 profaneNotifications.push("Life ain't all sunshines and YouTube. Take the pledge to better yourself.");
 profaneNotifications.push("Thought is nothing. Execution is everything. Close this fucking tab.");
 profaneNotifications.push("Get moving. Whether that's in the mind or body, just get moving.");
@@ -207,8 +207,8 @@ function afterNavigate() {
                 button.appendChild(t);
 
                 button.setAttribute("style", "position: fixed; bottom: 15%; z-index: 20000; text-align: center;" +
-                    "width: 300px; height: 150px; color: white; background-color: #ff0000; margin: auto; border: 3px solid white;" +
-                    "left: 38%; font-size: 45px; box-shadow: 5px 5px grey; z-index: 2100000001;");
+                    "width: 300px; height: 150px; color: white; background-color: black; margin: auto; border: 3px solid white;" +
+                    "left: 38%; font-size: 45px; box-shadow: 5px 5px grey; z-index: 2100000001;");  // Background color was #ff0000
 
                 button.style.fontWeight = "lighter";
                 button.style.fontStyle = "italic";
@@ -224,13 +224,15 @@ function afterNavigate() {
                 button.onmouseout = function() {mouseOut()};
 
                 function mouseOver() {
-                    button.style.backgroundColor = "#E80C7A";
+                    button.style.backgroundColor = "white";  // Was #E80C7A
+                    button.style.color = "black";
                     button.style.fontWeight = "bolder";
                     button.style.fontStyle = "italic";
                 }
 
                 function mouseOut() {
-                    button.style.backgroundColor = "#ff0000";
+                    button.style.backgroundColor = "black";     // Was #ff0000
+                    button.style.color = "white";
                     button.style.fontWeight = "lighter";
                     button.style.fontStyle = "italic";
                 }
