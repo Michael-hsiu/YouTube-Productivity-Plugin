@@ -92,8 +92,8 @@ function afterNavigate() {
             console.groupEnd();
 
             // Alert every 'videoRatio' videos watched
-            if (videoCount % videoRatio == 0) {
-            //if (videoCount >= 0) {
+            //if (videoCount % videoRatio == 0) {
+            if (videoCount >= 0) {
                 //alert("VIDEO RATIO: " + videoRatio);
                 //alert("You have watched " + videoCount + " videos!");
 
@@ -102,12 +102,12 @@ function afterNavigate() {
                 // Create background black layer (partially opaque)
                 wrapperDiv = document.createElement("div");
                 wrapperDiv.setAttribute("style", "position: fixed; width: 800px; height: 1500px; left: 0px; " +
-                    "top: 0px; background-color: rgb(0, 0, 0); opacity: 0.95; z-index: 9999; width: 100%;");
+                    "top: 0px; background-color: #ffffff; opacity: 0.98; z-index: 2100000000; width: 100%;");
 
 
                 // Container div for text content (currently set so you can't see it)
                 modalDialogParentDiv = document.createElement("div");	// Create the parent div
-                modalDialogParentDiv.setAttribute("style", "position: fixed; opacity: 1; z-index: 10000; " +
+                modalDialogParentDiv.setAttribute("style", "position: fixed; opacity: 1; z-index: 2100000001; " +
                     "overflow: auto; top: 200px; ");
                 modalDialogParentDiv.style.position = "fixed";		// Div follows scrolling
                 modalDialogParentDiv.style.alignSelf = "center";
@@ -156,7 +156,7 @@ function afterNavigate() {
                 modalDialogText.style.fontStyle = "italic";
                 modalDialogText.style.fontWeight = "900";
                 modalDialogText.style.position = "fixed";
-                modalDialogText.style.color = "#ff0000";
+                modalDialogText.style.color = "black";
                 modalDialogText.style.top = "180px";        // Distance from top
 
 
@@ -208,7 +208,7 @@ function afterNavigate() {
 
                 button.setAttribute("style", "position: fixed; bottom: 15%; z-index: 20000; text-align: center;" +
                     "width: 300px; height: 150px; color: white; background-color: #ff0000; margin: auto; border: 3px solid white;" +
-                    "left: 38%; font-size: 45px; box-shadow: 5px 5px grey;");
+                    "left: 38%; font-size: 45px; box-shadow: 5px 5px grey; z-index: 2100000001;");
 
                 button.style.fontWeight = "lighter";
                 button.style.fontStyle = "italic";

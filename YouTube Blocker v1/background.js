@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(function(response, sender, sendResponse) {
 			tabData = data.closeAll;
 			closeAllGlobal = tabData;
 
-		alert("Close all tabs?: " + closeAllGlobal);
+		//alert("Close all tabs?: " + closeAllGlobal);
 		// Either close all YouTube tabs...
 		if (closeAllGlobal == true) {
 			//alert("INSIDE IF");
