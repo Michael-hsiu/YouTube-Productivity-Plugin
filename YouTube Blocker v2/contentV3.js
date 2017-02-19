@@ -94,10 +94,29 @@ function afterNavigate() {
 
 					    // Configure the frame:
 					    frame.id = 'extension-invasive-kanji-coversheet';
-					    frame.src = runtime.getURL('framecontent.html');
+					    frame.src = runtime.getURL('framecontent.html');	// HTML accesses its stylesheet at runtime!
+
 					    // Explicitly set border width to avoid flashing of the iframe:
 					    frame.style.borderWidth = 0;
 
+
+					    /*// Add text
+					    frameBody = document.createElement("BODY");
+					    var textDiv = document.createElement("DIV");
+					    textDiv.textContent = "HIIIIIIIIII DIV TEXT CONTENT";
+					    
+					    // Add button
+					    var button = document.createElement("BUTTON");
+				    	button.textContent = "CLICK MEE THO!";
+
+				    	// Add elements to background
+				    	frameBody.appendChild(textDiv);
+				    	frameBody.appendChild(button);
+
+				    	// Add parent elements to the document
+						frame.appendChild(textDiv);
+						//frame.appendChild(frameBody);		// Add body to the iFrame */
+						
 				    	document.body.appendChild(frame);	// The "flash" effect is added
 
 					    alert("END SCRIPT");
@@ -124,14 +143,14 @@ function afterNavigate() {
 								console.log("CLICKED");
 								chrome.runtime.sendMessage("closeTab");     // Send message to background script
 							}
-						}
+						} */
 
 						// RNG for string message array
 						function getRandomInt(min, max) {
 							min = Math.ceil(min);
 							max = Math.floor(max);
 							return Math.floor(Math.random() * (max - min)) + min;
-						} */
+						}
 					}
 				})
 			}

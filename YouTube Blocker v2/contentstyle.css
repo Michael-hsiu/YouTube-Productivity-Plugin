@@ -6,11 +6,11 @@
     height: 100% !important;
     margin: 0 !important;
     border: none !important;
-    background-color:  #66CCCC !important; /* Flashes before word part loads */
+    background-color:  green !important; /* Flashes before word part loads */
     z-index: 2147483647 !important;
     -webkit-transition: opacity 0.5s ease-out !important;
     transition: opacity 0.5s ease-out !important;
 
     /* leave opacity without !important or it will be difficult to override */
-    opacity: 0;
+    opacity: 1;
 }

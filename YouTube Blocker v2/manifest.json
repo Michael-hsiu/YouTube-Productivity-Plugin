@@ -40,6 +40,8 @@
   ],
 
   "web_accessible_resources": [
+    "framecontent.html",
+    "framestyle.css",
     "contentstyle.css"
   ]
 }
