@@ -104,9 +104,10 @@ function afterNavigate() {
 
 				/************************************** CREATING THE UI **************************************/
 
-				// Programatically creates the UI that occurs every time videoRatio is reached.
+				// Programmatically creates the UI that occurs every time videoRatio is reached.
 
 				/** BACKGROUND */
+
 				// Create background white layer (partially opaque)
 				var backgroundDiv = document.createElement("div");
 				backgroundDiv.setAttribute("style",
@@ -130,6 +131,7 @@ function afterNavigate() {
 					"opacity: 1; " +
 					"z-index: 2100000001; " +
 					"overflow: auto; " +
+                    "left: 5%; " +
 					"top: 200px; " +
 					"position: fixed; " +
 					"alignSelf: center");
@@ -142,10 +144,12 @@ function afterNavigate() {
 				messageDiv.setAttribute("style",
 					"text-align: center; " +
 					"padding: 35px; " +
-					"alignSelf: center");
+					"alignSelf: parent");
 
 				// Create text span for messageText
 				var messageTextSpan = document.createElement("span");
+                messageTextSpan.setAttribute("style",
+                    "alignSelf: parent");
 
 				// Create the messageText (initially empty)
 				var messageText = document.createElement("strong");
@@ -186,13 +190,13 @@ function afterNavigate() {
 					lastMsgIndex = index;
 
 					// Set messageText properties
-					messageText.style.alignSelf = "center";
 					messageText.style.fontSize = "80px";
 					messageText.style.fontStyle = "italic";
 					messageText.style.fontWeight = "900";
 					messageText.style.position = "fixed";
 					messageText.style.color = "black";
 					messageText.style.top = "180px";        // Distance from top
+                    messageText.style.alignSelf = "parent";
 
 				});
 
@@ -203,6 +207,8 @@ function afterNavigate() {
 
 				// Create break element
 				var breakElement = document.createElement("br");
+                breakElement.setAttribute("style",
+                    "alignSelf: parent");
 
                 // Add messageText to text spawn
 				messageTextSpan.appendChild(messageText);
