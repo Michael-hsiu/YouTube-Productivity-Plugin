@@ -6,10 +6,14 @@
  */
 
 
-// Instance variables
+
+/** Instance variables */
+
 var videoCount = 0;     // Total video count (all time)
 var lastMsgIndex;       // Index of last displayed message (not working)
 var videoRatio;		    // Message is displayed every this number of videos
+
+
 
 
 /** CHROME STORAGE ACCESS */
@@ -45,6 +49,7 @@ chrome.storage.sync.get({
 	document.getElementById('profanityCheckbox').checked = items.profaneMsgStatus;
 
 });
+
 
 
 // Asynchronous calls can be tricky! (chrome.storage.sync especially)
@@ -135,10 +140,11 @@ function navigatedToNewPage() {
                 // Create text span for messageText
                 var messageTextSpan = document.createElement("span");
                 messageTextSpan.style.alignSelf = "center";
-                messageTextSpan.style.textOverflow = "ellipsis";
 
                 // Create the messageText (initially empty)
                 var messageText = document.createElement("strong");
+
+
 
 
                 /**************************** GETTING A MESSAGE TO DISPLAY ****************************/
@@ -189,6 +195,7 @@ function navigatedToNewPage() {
                 console.log("LAST INDEX OUTSIDE CALL: " + lastMsgIndex);
 
 
+
                 /** ORGANIZING MESSAGE + BUTTON HIERARCHY */
 
                     // Create break element
@@ -220,6 +227,8 @@ function navigatedToNewPage() {
 
                 // Create button
                 var button = document.createElement("button");
+
+
 
                 /** Get a random button response */
 
@@ -260,6 +269,7 @@ function navigatedToNewPage() {
                 document.body.appendChild(buttonDiv);           // Button layer
 
 
+
                 /** BUTTON INTERACTION METHODS */
 
                 button.onmouseover = function () {
@@ -296,6 +306,9 @@ function navigatedToNewPage() {
 	});
 }
 
+
+
+
 /** HELPER METHODS */
 
 // RNG for string message array
@@ -304,6 +317,7 @@ function getRandomInt(min, max) {
 	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min)) + min;
 }
+
 
 
 /** POTENTIAL MESSAGES */
