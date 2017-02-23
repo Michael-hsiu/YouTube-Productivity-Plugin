@@ -346,7 +346,7 @@ buttonResponses =       [
     "True that.",
     "Got it.",
     "Aw, snap...",
-    "Damn."
+    "Dang."
 ];
 
 
