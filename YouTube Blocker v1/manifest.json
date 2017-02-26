@@ -27,14 +27,14 @@
 		  "128": "icon128.png" },
 
   "background": {
-  	"scripts": ["background -callbackFix.js"],
+  	"scripts": ["background.js"],
   	"persistent": false
   },
 
   "content_scripts": [
   	{
   	  "matches": ["*://*/*"],
-  	  "js": ["content.js"]
+  	  "js": ["content -callbackFix.js"]
   	}
   ]
 }
