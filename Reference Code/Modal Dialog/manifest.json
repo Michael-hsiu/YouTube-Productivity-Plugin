@@ -1,0 +1,51 @@
+{
+    "name": "Add Model Window",
+    "description": "http://stackoverflow.com/questions/14423923/chrome-extension-modal-dialog-or-other-solution-to-notify-users",
+    "version": "1",
+    "manifest_version": 2,
+
+    "permissions" : [
+        "activeTab",
+        "tabs",
+        "storage"
+    ],
+
+
+
+    "browser_action": {
+    	"default_title": "Modal Window!"
+  	},
+
+    "options_page": "options.html",
+    
+    "options_ui": {
+        // Required.
+        "page": "options.html",
+        // Recommended.
+        "chrome_style": true
+        // Not recommended; only provided for backwards compatibility,
+        // and will be unsupported in a future version of Chrome (TBD).
+        //"open_in_tab": true
+    },
+
+    "content_scripts": [
+        {
+        	"run_at": "document_end",
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "modal.js"
+            ]
+        }
+    ],
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+
+    "web_accessible_resources": [
+        "spinner_progress.gif"
+    ]
+}

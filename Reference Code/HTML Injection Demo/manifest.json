@@ -1,0 +1,12 @@
+{
+    "manifest_version":         2,
+    "content_scripts":          [ {
+        "js":       [ "iframeInjector.js" ],
+        "matches":  [   "*://*/*"
+        ]
+    } ],
+    "description":              "Inject a complete, premade web page",
+    "name":                     "Inject whole web page",
+    "version":                  "1",
+    "web_accessible_resources": ["hello-world.htm"]
+}

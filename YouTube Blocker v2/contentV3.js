@@ -116,10 +116,20 @@ function afterNavigate() {
 				    	// Add parent elements to the document
 						frame.appendChild(textDiv);
 						//frame.appendChild(frameBody);		// Add body to the iFrame */
-						
+
 				    	document.body.appendChild(frame);	// The "flash" effect is added
 
-					    alert("END SCRIPT");
+					    console.log("END SCRIPT");
+
+
+						/*function clickHandler(){ // declare a function that updates the state
+						  alert("AIYAH");
+						}*/
+
+						//var element = document.getElementById('info'); // grab a reference to your element
+						//console.log(element.innerHTML);
+						//element.addEventListener('click', clickHandler); // associate the function above with the click event
+
 
 						/*/ UI functions
 						button.onmouseover = function() {mouseOver()};
@@ -136,14 +146,18 @@ function afterNavigate() {
 							button.style.fontWeight = "lighter";
 							button.style.fontStyle = "italic";
 						}
+						
+						
 
 						// When the user clicks anywhere outside of the modal, close it
 						window.onclick = function (event) {
-							if (event.target == button) {
-								console.log("CLICKED");
+							var x = document.getElementById("test");
+							alert("CLICK DETECTED");
+							if (event.target == x) {
+								alert("CLICKED");
 								chrome.runtime.sendMessage("closeTab");     // Send message to background script
 							}
-						} */
+						}*/
 
 						// RNG for string message array
 						function getRandomInt(min, max) {

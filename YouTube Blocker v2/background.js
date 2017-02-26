@@ -5,8 +5,8 @@ chrome.runtime.onMessage.addListener(function(response, sender, sendResponse) {
 
 	// Should we close all tabs?
 	chrome.storage.sync.get('closeAll', function(data) {
-			tabData = data.closeAll;
-			closeAllGlobal = tabData;
+		tabData = data.closeAll;
+		closeAllGlobal = tabData;
 
 		//alert("Close all tabs?: " + closeAllGlobal);
 		// Either close all YouTube tabs...

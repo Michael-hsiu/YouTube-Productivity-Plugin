@@ -1,0 +1,28 @@
+{
+  "name": "CSS TEST EXTENSION",
+  "description": "This extension tests CSS overriding on webpages.",
+  "version": "1.0",
+
+  "permissions": [
+    "activeTab"
+  ],
+
+  "browser_action": {
+    "default_title": "CSS test here!"
+  },
+
+  "background": {
+  	"scripts": ["background.js"],
+  	"persistent": false
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+
+  "manifest_version": 2
+
+}
