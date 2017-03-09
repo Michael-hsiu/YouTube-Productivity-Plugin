@@ -137,7 +137,8 @@ function navigatedToNewPage() {
                         "overflow: auto; " +
                         "margin: auto;" +
                         "position: fixed; " +
-                        "left: -15px; ");
+                        "left: -15px; " +
+                        "opacity: 0");
 
                     messageParentDiv.style.alignSelf = "center";
 
@@ -297,7 +298,7 @@ function navigatedToNewPage() {
 
                     button.style.fontWeight = "lighter";
                     button.style.fontStyle = "italic";
-                    button.style.transition = "opacity 8s";
+                    //button.style.transition = "opacity 8s";
 
 
 
@@ -321,14 +322,21 @@ function navigatedToNewPage() {
 
                     /** BUTTON INTERACTION METHODS */
 
-                    function fadeIn() {
+                    /*function fadeIn() {
                         // Reference: http://xahlee.info/js/js_fadeout.html
-                        if (button.style.opacity < 1) {
-                            button.style.opacity += 0.1;
+                        alert("OPACITY: " + messageText.style.opacity);
+
+                        while (messageText.style.opacity < 1) {
+                            var o = messageText.style.opacity;
+                            o += 0.1;
+                            messageText.style.opacity = o.toFixed(2);
+
+                            //messageText.style.opacity = messageText.style.opacity + 0.9;
                             setTimeout(fadeIn, 60);
                         }
+                        alert("COMPLETE");
 
-                    }
+                    }*/
 
                     // Change button colors on mouseOver
                     function mouseOver() {
