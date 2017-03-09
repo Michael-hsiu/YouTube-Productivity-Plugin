@@ -20,7 +20,7 @@ function chooseTabFunction (data) {
 	closeAllGlobal = data.closeAll;
 
 	// Either close all YouTube tabs...
-	alert(closeAllGlobal);
+	//alert(closeAllGlobal);
 	if (closeAllGlobal == true) {
 
 		// Close all tabs

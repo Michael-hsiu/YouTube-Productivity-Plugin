@@ -138,7 +138,7 @@ function navigatedToNewPage() {
                         "margin: auto;" +
                         "position: fixed; " +
                         "left: -15px; " +
-                        "opacity: 0");
+                        "opacity: 1");
 
                     messageParentDiv.style.alignSelf = "center";
 
@@ -311,7 +311,7 @@ function navigatedToNewPage() {
                     document.body.appendChild(buttonDiv);           // Button layer
 
                     // Fade the button in
-                    fadeIn();
+                    //fadeIn();
 
                     button.onmouseover = function () {
                         mouseOver()
