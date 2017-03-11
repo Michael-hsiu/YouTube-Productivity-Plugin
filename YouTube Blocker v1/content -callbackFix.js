@@ -100,8 +100,9 @@ function navigatedToNewPage() {
                 console.log(videoCount + " videos watched!");
                 console.groupEnd();
 
-                //if (videoCount % videoRatio == 0) {
-                if (videoCount >= 0) {
+                if (videoCount % videoRatio == 0) {
+                    alert("VIDEORATIO: " + videoRatio);
+                //if (videoCount >= 0) {
                     //alert("THIS IS VIDEOCOUNT: " + videoCount);
 
                     /************************************** CREATING THE UI **************************************/
