@@ -101,7 +101,7 @@ function navigatedToNewPage() {
                 console.groupEnd();
 
                 if (videoCount % videoRatio == 0) {
-                    alert("VIDEORATIO: " + videoRatio);
+                    //alert("VIDEORATIO: " + videoRatio);
                 //if (videoCount >= 0) {
                     //alert("THIS IS VIDEOCOUNT: " + videoCount);
 
