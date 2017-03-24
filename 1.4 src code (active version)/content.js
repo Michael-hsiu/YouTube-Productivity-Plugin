@@ -1,3 +1,7 @@
+/** References:
+	For detecting YT watch page: http://stackoverflow.com/questions/18397962/chrome-extension-is-not-loading-on-browser-navigation-at-youtube
+	For building JS UI: http://stackoverflow.com/questions/14423923/chrome-extension-modal-dialog-or-other-solution-to-notify-users
+*/
 
 /** MAIN */
 
