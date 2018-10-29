@@ -24,7 +24,6 @@ function setDifficulty (data) {
     } else {
         videoRatio = 3;
     }
-
 }
 
 /*function handleVideoCount(data) {
@@ -73,7 +72,7 @@ function navigatedToNewPage() {
 
         // Set the new video count
         chrome.storage.sync.set({totalVideoCount: totalVideoCount}, function() {
-            console.log("Video count incremented!");
+            console.log("Video count set!");
 
             //alert(totalVideoCount);
 
